@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+        Es necesario ingresar el nombre.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Correo</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+        Es necesario ingresar un correo.
+      </mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+        Ingresa un correo válido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Teléfono</mat-label>
+      <input matInput formControlName="phone" />
+      <mat-error *ngIf="form.get('phone')?.hasError('required') && form.get('phone')?.touched">
+        Es necesario ingresar un teléfono.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Empresa</mat-label>
+      <input matInput formControlName="company" />
+      <mat-error *ngIf="form.get('company')?.hasError('required') && form.get('company')?.touched">
+        Es necesario ingresar una empresa.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Dirección (opcional)</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
+</mat-dialog-actions>

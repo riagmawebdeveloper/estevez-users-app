@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { MainLayoutComponent } from './core/layouts/main-layout/main-layout.component';
+import { ClientsListComponent } from './features/clients/pages/clients-list/clients-list.component';
 
 export const routes: Routes = [
   {
@@ -8,18 +10,23 @@ export const routes: Routes = [
       import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
   },
   {
-    path: 'clients',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('./features/clients/clients.routes').then(m => m.CLIENTS_ROUTES),
-  },
-  {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'clients',
+    component: MainLayoutComponent,
+    canActivate: [authGuard],
+    children: [
+      {
+        path: 'clients',
+        component: ClientsListComponent,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'clients',
+      },
+    ],
   },
   {
     path: '**',
-    redirectTo: 'clients',
+    redirectTo: '',
   },
 ];

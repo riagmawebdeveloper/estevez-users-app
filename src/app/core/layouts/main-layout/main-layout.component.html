@@ -1,0 +1,25 @@
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened class="app-sidenav">
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo" class="logo" />
+    </div>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/clients" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>Clientes</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="app-toolbar">
+      <span>Panel de administración</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
