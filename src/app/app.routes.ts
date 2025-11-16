@@ -12,7 +12,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadChildren: () =>
       import('./features/clients/clients.routes').then(m => m.CLIENTS_ROUTES),
-  },//
+  },
   {
     path: '',
     pathMatch: 'full',
