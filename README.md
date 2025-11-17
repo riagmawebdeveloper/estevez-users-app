@@ -1,59 +1,55 @@
 # EstevezUsersApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
-## Development server
+Este proyecto ha sido generado con  [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
-To start a local development server, run:
+## Objetivo del proyecto
+Desarrollar una aplicación básica en Angular que cumpla con los siguientes requisitos mínimos:
+
+Pantalla de Login
+Permitir inicio de sesión con usuario y contraseña (puede ser validación simulada o mock).
+No es necesario implementar backend real.
+Módulo de Clientes
+Pantalla para dar de alta un cliente con los datos que tú decidas (por ejemplo: nombre, correo, teléfono, empresa, etc.).
+Mostrar en una tabla o lista los clientes registrados.
+Permitir eliminar o editar un cliente (opcional, suma puntos).
+Requisitos técnicos básicos:
+Proyecto en Angular
+Estructura limpia y ordenada del código.
+Uso de componentes y servicios.
+Interfaz sencilla pero funcional (puedes usar Angular Material o Bootstrap si prefieres).
+
+## Instalación y ejecución 
+
+1. Clonar repositorio
+
+```bash
+git clone https://github.com/riagmawebdeveloper/estevez-users-app
+cd estevez-users-app
+```
+
+2. Instalar dependencias
+
+```bash
+npm install
+```
+
+
+3. Ejecutar modo desarrollo
 
 ```bash
 ng serve
+ó
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La aplicación deberá de correr en:
 
-## Code scaffolding
+http://localhost:4200
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Credenciales de prueba
 
-```bash
-ng generate component component-name
-```
+Para iniciar sesión en la aplicación deberas de ingresar lo siguiente:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Usuario: admin
+Contraseña: 1234
