@@ -1,45 +1,80 @@
 .clients-container {
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 .clients-card {
   width: 100%;
-  max-width: 1100px;
+  max-width: none;
+  border-radius: 12px;
   padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  background: #ffffff;
 }
 
-.header-row {
+.page-header {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
-
-  .left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    h1 {
-      margin: 0;
-    }
-  }
-
-  .filters {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-
-    .filter-field {
-      min-width: 200px;
-      flex: 1;
-    }
-  }
 }
 
+.breadcrumb {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.add-btn {
+  border-radius: 24px;
+  padding: 6px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filters-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.filter-field {
+  min-width: 220px;
+  flex: 1;
+}
+
+/* Tabla */
 .clients-table {
   width: 100%;
   margin-top: 8px;
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+th.mat-mdc-header-cell:last-child {
+  text-align: center !important;
+}
+
+.phone-cell {
+  white-space: nowrap;
+}
+
+.email-cell {
+  white-space: normal;
+  word-break: break-all;
 }
 
 .no-data {

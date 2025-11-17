@@ -1,7 +1,16 @@
 import { Component, Inject, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,13 +40,22 @@ export class ClientFormDialogComponent {
 
   form: FormGroup;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: ClientFormData
-  ) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ClientFormData) {
     this.form = this.fb.group({
       name: [data?.client?.name || '', Validators.required],
-      email: [data?.client?.email || '', [Validators.required, Validators.email]],
-      phone: [data?.client?.phone || '', Validators.required],
+      email: [
+        data?.client?.email || '',
+        [Validators.required, Validators.email],
+      ],
+      phone: [
+        this.data?.client?.phone || '',
+        [
+          Validators.required,
+          Validators.pattern(/^[0-9]+$/),
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ],
+      ],
       company: [data?.client?.company || '', Validators.required],
       address: [data?.client?.address || ''],
     });
@@ -58,5 +76,14 @@ export class ClientFormDialogComponent {
 
   onCancel(): void {
     this.dialogRef.close(null);
+  }
+
+  onPhoneInput(event: Event): void {
+    const input = event.target as HTMLInputElement | null;
+    if (!input) return;
+
+    const sanitized = input.value.replace(/\D/g, '').slice(0, 10);
+
+    this.form.get('phone')?.setValue(sanitized, { emitEvent: false });
   }
 }
