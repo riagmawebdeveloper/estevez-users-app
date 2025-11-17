@@ -1,21 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { ClientsService } from '../../services/clients.service';
+import { Client } from '../../../../shared/models/client.model';
 
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
 import { ClientFormDialogComponent } from '../../components/client-form-dialog/client-form-dialog.component';
-import { FormsModule } from '@angular/forms';
-import { Client } from '../../../../shared/models/client.model';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from '../../../../shared/components/alert-dialog/alert-dialog.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-clients-list',
@@ -30,19 +31,16 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatSnackBarModule,
-    ConfirmDialogComponent,
-    AlertDialogComponent,
+    MatPaginatorModule,
   ],
   templateUrl: './clients-list.component.html',
   styleUrls: ['./clients-list.component.scss'],
 })
-export class ClientsListComponent implements OnInit {
+export class ClientsListComponent implements OnInit, AfterViewInit {
   private clientsService = inject(ClientsService);
   private dialog = inject(MatDialog);
 
   clients: Client[] = [];
-  filteredClients: Client[] = [];
 
   filterName = '';
   filterCompany = '';
@@ -57,7 +55,9 @@ export class ClientsListComponent implements OnInit {
     'actions',
   ];
 
-  private snackBar = inject(MatSnackBar);
+  dataSource = new MatTableDataSource<Client>([]);
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.clientsService.clients$.subscribe((clients) => {
@@ -66,16 +66,33 @@ export class ClientsListComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
   applyFilters(): void {
     const name = this.filterName.toLowerCase();
     const company = this.filterCompany.toLowerCase();
 
-    this.filteredClients = this.clients.filter((c) => {
-      const matchesName = !name || c.name.toLowerCase().includes(name);
+    const filtered = this.clients.filter((c) => {
+      const matchesName =
+        !name || c.name.toLowerCase().includes(name);
       const matchesCompany =
         !company || c.company.toLowerCase().includes(company);
       return matchesName && matchesCompany;
     });
+
+    this.dataSource.data = filtered;
+
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  clearFilters(): void {
+    this.filterName = '';
+    this.filterCompany = '';
+    this.applyFilters();
   }
 
   openCreateDialog(): void {
@@ -136,8 +153,14 @@ export class ClientsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         this.clientsService.deleteClient(client.id);
-        this.snackBar.open('Cliente eliminado con éxito', 'Cerrar', {
-          duration: 2000,
+
+        this.dialog.open(AlertDialogComponent, {
+          width: '360px',
+          data: {
+            title: 'Cliente eliminado',
+            message: `El cliente "${client.name}" ha sido eliminado con éxito.`,
+            buttonText: 'Cerrar',
+          },
         });
       }
     });

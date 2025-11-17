@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MOCK_USERS } from '../../shared/mocks/auth.mock';
 
 @Injectable({
   providedIn: 'root',
@@ -8,11 +9,15 @@ export class AuthService {
 
   // mock: usuario = admin, password = 1234
   login(username: string, password: string): boolean {
-    if (username === 'admin' && password === '1234') {
-      localStorage.setItem(this.STORAGE_KEY, 'true');
-      return true;
-    }
-    return false;
+    const user = MOCK_USERS.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (!user) return false;
+
+    localStorage.setItem(this.STORAGE_KEY, 'true');
+    localStorage.setItem('loggedUser', JSON.stringify(user));
+    return true;
   }
 
   logout(): void {

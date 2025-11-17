@@ -78,3 +78,112 @@ mat-nav-list a.mat-list-item mat-icon {
   width: 20px !important;
   line-height: 20px !important;
 }
+
+.user-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #005BAB;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menu-user-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.menu-avatar {
+  width: 48px;
+  height: 48px;
+  background: #005BAB;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.menu-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+
+$bp-sm: 600px;
+$bp-md: 960px;
+
+@media (max-width: $bp-md) {
+  .app-sidenav {
+    width: 180px;
+  }
+
+  .toolbar-title {
+    font-size: 16px;
+  }
+
+  .logout-btn span {
+    display: none;
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .app-sidenav {
+    width: 72px;
+    padding-top: 0;
+  }
+
+  .brand {
+    padding: 8px;
+  }
+
+  .brand-logo {
+    max-width: 48px;
+  }
+
+  mat-nav-list a.mat-list-item span {
+    display: none;
+  }
+
+  mat-nav-list a.mat-list-item {
+    justify-content: center;
+  }
+
+  .app-toolbar {
+    grid-template-columns: 1fr auto;
+    padding: 0 8px;
+  }
+
+  .toolbar-title {
+    font-size: 15px;
+  }
+}

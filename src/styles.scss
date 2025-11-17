@@ -1,12 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
-
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #f3f4f8;
   -webkit-font-smoothing: antialiased;
+}
+
+.app-main {
+  padding: 16px 24px;
+}
+
+$bp-sm: 600px;
+$bp-md: 960px;
+$bp-lg: 1280px;
+
+@media (max-width: $bp-md) {
+  .app-main {
+    padding: 12px 12px;
+  }
+}
+
+@media (max-width: $bp-sm) {
+  .app-main {
+    padding: 8px;
+  }
 }
