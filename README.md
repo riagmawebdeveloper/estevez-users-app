@@ -53,3 +53,11 @@ Para iniciar sesión en la aplicación deberas de ingresar lo siguiente:
 
 Usuario: admin
 Contraseña: 1234
+
+
+
+## Demo
+
+Pueden visualizar en el siguiente link el demo de la aplicacion, ingresando con las credenciales de prueba:
+
+https://estevez-project.netlify.app/auth/login
