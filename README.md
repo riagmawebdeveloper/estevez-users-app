@@ -52,7 +52,7 @@ http://localhost:4200
 Para iniciar sesión en la aplicación deberas de ingresar lo siguiente:
 
 Usuario: admin
-Contraseña: 1234
+Contraseña: estevez1234
 
 
 
