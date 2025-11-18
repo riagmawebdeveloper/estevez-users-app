@@ -60,4 +60,4 @@ Contraseña: 1234
 
 Pueden visualizar en el siguiente link el demo de la aplicacion, ingresando con las credenciales de prueba:
 
-https://estevez-project.netlify.app/auth/login
+https://estevez-project.netlify.app/
